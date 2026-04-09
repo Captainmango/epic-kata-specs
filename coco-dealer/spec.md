@@ -323,17 +323,48 @@ Request fields:
 Room Request → Find/Create Deck → Assign Room ID → Persist State
 ```
 
+Or triggered by scheduler:
+
+```
+Scheduler start-game signal → Create Deck → Assign to room_id → Persist State → WebSocket notify
+```
+
 ## Task Consumption Behaviors (Optional)
 
 The dealer may optionally consume tasks from a message queue.
 
-### Supported Task Types
+### Start-Game Behavior
 
-| Task | Description |
-|------|-------------|
-| `create-deck` | Create new deck for a room |
-| `assign-deck` | Assign existing deck to a room |
-| `deal-cards` | Deal cards to a room/player |
+When the dealer receives a `start-game` task from the scheduler, it must:
+
+1. **Create a new deck** - Generate a new shuffled 52-card deck
+2. **Assign to room** - Associate the deck with the `room_id` from the task
+3. **Persist state** - Store the deck and assignment
+4. **Notify clients** - Send deck assignment notification via WebSocket to the room
+
+**Task Format:**
+```json
+{
+  "task_id": "start-game",
+  "room_id": "room-123"
+}
+```
+
+**Behavior Details:**
+- A new deck is always created (never reuse existing decks)
+- Deck is automatically shuffled
+- Full 52-card standard deck is used
+- Assignment replaces any existing deck assignment for that room
+- WebSocket notification sent to all subscribers of the room
+
+**WebSocket Notification:**
+```json
+{
+  "type": "deck_assigned",
+  "room_id": "room-123",
+  "deck_id": "newly-created-deck-uuid"
+}
+```
 
 ### Task Format
 
@@ -419,12 +450,11 @@ Examples: Relational database, key-value store, file system
 - [ ] Handle deck exhausted
 
 ### Task Consumption Tests (if implemented)
-- [ ] Consume create-deck task
-- [ ] Consume assign-deck task
-- [ ] Consume deal-cards task
+- [ ] Consume start-game task - creates and assigns deck
 - [ ] Handle task processing errors
 
 ### E2E Tests
+- [ ] Full flow: Scheduler start-game → Deck created → Assigned to room → WebSocket notified
 - [ ] Full flow: Create deck → Assign to room → Draw cards
 - [ ] Full flow: Task queued → Worker processes → Cards dealt
 

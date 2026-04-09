@@ -13,7 +13,8 @@ A collection of end-to-end (E2E) test suites designed to assist in learning prog
 | Project | Description | Test Framework |
 |---------|-------------|----------------|
 | [coco-task](./coco-task) | A task manager API with scheduling capabilities | [Hurl](https://hurl.dev) |
-| [coco-dealer](./coco-dealer) | A task scheduler API for card game operations | [Hurl](https://hurl.dev) |
+| [coco-dealer](./coco-dealer) | A card dealing service for managing decks and game rooms | [Hurl](https://hurl.dev) |
+| [blogga](./blogga) | A blogging platform API for managing posts and comments | [Hurl](https://hurl.dev) |
 
 ## Prerequisites
 
