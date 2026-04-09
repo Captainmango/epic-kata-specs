@@ -10,11 +10,11 @@ A collection of end-to-end (E2E) test suites designed to assist in learning prog
 
 ## Available Test Suites
 
-| Project | Description | Test Framework |
-|---------|-------------|----------------|
-| [coco-task](./coco-task) | A task manager API with scheduling capabilities | [Hurl](https://hurl.dev) |
-| [coco-dealer](./coco-dealer) | A card dealing service for managing decks and game rooms | [Hurl](https://hurl.dev) |
-| [blogga](./blogga) | A blogging platform API for managing posts and comments | [Hurl](https://hurl.dev) |
+| Project | Description | Test Framework | Difficulty |
+|---------|-------------|----------------|------------|
+| [coco-task](./coco-task) | A task manager API with scheduling capabilities | [Hurl](https://hurl.dev) | Medium (depending on approach) |
+| [coco-dealer](./coco-dealer) | A card dealing service for managing decks and game rooms | [Hurl](https://hurl.dev) | Medium |
+| [blogga](./blogga) | A blogging platform API for managing posts and comments | [Hurl](https://hurl.dev) | Easy |
 
 ## Prerequisites
 
